@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "SET HOST=127.0.0.1&& react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm i&& react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "tailwindcss build -i ./public/tw.css -o ./src/index.css --watch"
