@@ -1,13 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { KontContext } from "../App";
 import BilješkaPreview from "../grupe/BilješkaPreview";
-import Grupa from "../grupe/Grupa";
 import OdjavaIkona from "../ikone/OdjavaIkona";
 import UrediIkona from "../ikone/UrediIkona";
 import Logo from "../slike/Logo";
-import DesnoIkona from "../ikone/DesnoIkona";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import sistemPretrage from "../pomocne/sistemPretrage";
 import StrelicaGore from "../ikone/StrelicaGore";
 import sistemSortiranja from "../pomocne/sistemSortiranja";
