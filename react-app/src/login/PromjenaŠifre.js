@@ -35,7 +35,7 @@ const PromjenaŠifre = ({ setPromjenaŠifre }) => {
       novaŠifra: novaŠifra,
     };
 
-    const url = await fetch("/promjenaSifre", {
+    const url = await fetch("https://e-notes-4mhk.onrender.com/promjenaSifre", {
       method: "PATCH",
       credentials: "include",
       redirect: "follow",

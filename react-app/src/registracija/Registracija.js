@@ -52,7 +52,7 @@ const Registracija = () => {
       potvrdiŠifru,
     };
 
-    const url = await fetch("/registracija", {
+    const url = await fetch("https://e-notes-4mhk.onrender.com/registracija", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

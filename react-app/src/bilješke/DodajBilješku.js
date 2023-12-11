@@ -34,15 +34,18 @@ const DodajBilješku = () => {
       naslov,
       sadržaj,
     };
-    const url = await fetch("/napraviBiljesku", {
-      method: "POST",
-      redirect: "follow",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(podaci),
-    });
+    const url = await fetch(
+      "https://e-notes-4mhk.onrender.com/napraviBiljesku",
+      {
+        method: "POST",
+        redirect: "follow",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(podaci),
+      }
+    );
     console.log(await url.json());
     navigate("/");
   };

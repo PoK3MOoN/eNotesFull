@@ -43,11 +43,14 @@ const Bilješke = () => {
 
   useEffect(() => {
     (async () => {
-      const url = await fetch("/biljeskeJednog", {
-        method: "GET",
-        redirect: "follow",
-        credentials: "include",
-      });
+      const url = await fetch(
+        "https://e-notes-4mhk.onrender.com/biljeskeJednog",
+        {
+          method: "GET",
+          redirect: "follow",
+          credentials: "include",
+        }
+      );
       const { bilješke } = await url.json();
       setBilješke(bilješke);
       setUčitavanje(false);
@@ -73,7 +76,7 @@ const Bilješke = () => {
   const odjavaCB = async () => {
     const odgovor = window.confirm("Jeste li sigurni da se želite odjaviti?");
     if (odgovor) {
-      await fetch("/odjaviKorisnika", {
+      await fetch("https://e-notes-4mhk.onrender.com/odjaviKorisnika", {
         method: "GET",
         redirect: "follow",
         credentials: "include",
@@ -98,15 +101,18 @@ const Bilješke = () => {
     );
     if (odgovor) {
       const biljeske = bilješke.filter((item) => item._id !== id);
-      const url = await fetch("/obrisiBiljesku", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        credentials: "include",
-        body: JSON.stringify({ id: id }),
-      });
+      const url = await fetch(
+        "https://e-notes-4mhk.onrender.com/obrisiBiljesku",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          redirect: "follow",
+          credentials: "include",
+          body: JSON.stringify({ id: id }),
+        }
+      );
       setBilješke(biljeske);
     }
   };

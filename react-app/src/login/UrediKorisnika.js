@@ -70,7 +70,7 @@ const UrediKorisnika = () => {
     const formData = new FormData();
     formData.append("slika", slika);
 
-    const url = await fetch("/postaviSliku", {
+    const url = await fetch("https://e-notes-4mhk.onrender.com/postaviSliku", {
       method: "POST",
       credentials: "include",
       redirect: "follow",
@@ -86,10 +86,13 @@ const UrediKorisnika = () => {
 
   useEffect(() => {
     (async () => {
-      const url = await fetch("/dohvatiKorisnika", {
-        credentials: "include",
-        redirect: "follow",
-      });
+      const url = await fetch(
+        "https://e-notes-4mhk.onrender.com/dohvatiKorisnika",
+        {
+          credentials: "include",
+          redirect: "follow",
+        }
+      );
       const { korisnik } = await url.json();
       setIme(korisnik.ime);
       korisnik.prezime
@@ -107,15 +110,18 @@ const UrediKorisnika = () => {
       prezime,
       mejl,
     };
-    const url = await fetch("/azurirajKorisnika", {
-      method: "POST",
-      credentials: "include",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(podaci),
-    });
+    const url = await fetch(
+      "https://e-notes-4mhk.onrender.com/azurirajKorisnika",
+      {
+        method: "POST",
+        credentials: "include",
+        redirect: "follow",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(podaci),
+      }
+    );
     const res = await url.json();
     alert("Uspješno ažurirani podaci :D");
   };
@@ -149,7 +155,7 @@ const UrediKorisnika = () => {
                 <img
                   alt="profilna"
                   className="h-full w-full scale-[1.13] translate-y-2 opacity-50 md:opacity-100 md:group-hover:opacity-50 animacija"
-                  src={`/slike/${slika}`}
+                  src={`https://e-notes-4mhk.onrender.com/slike/${slika}`}
                 ></img>
               </div>
               {/* IME */}

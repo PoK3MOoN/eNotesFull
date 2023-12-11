@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&family=Rubik:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  @apply rounded overflow-hidden shadow-lg relative;
+}
+.btn {
+  @apply rounded-full py-2 px-3 uppercase text-xs font-bold cursor-pointer tracking-wider;
+}
+
+.centriraj {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.centrirajAps {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 2;
+}
+.centrirajAps1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-65%, -65%);
+  z-index: 2;
+}
+
+.centrirajAps2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -35%);
+  z-index: 5;
+}
+
+.overlay {
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+}
+
+.animacija {
+  transition: all 0.4s ease-in-out;
+}

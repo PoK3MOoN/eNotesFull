@@ -48,15 +48,18 @@ const Bilješka = () => {
       naslov,
       sadržaj,
     };
-    const url = await fetch("/azurirajBiljesku", {
-      method: "PATCH",
-      redirect: "follow",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(podaci),
-    });
+    const url = await fetch(
+      "https://e-notes-4mhk.onrender.com/azurirajBiljesku",
+      {
+        method: "PATCH",
+        redirect: "follow",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(podaci),
+      }
+    );
     navigate("/");
   };
 

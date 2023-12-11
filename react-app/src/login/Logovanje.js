@@ -15,7 +15,7 @@ const Logovanje = ({ log }) => {
   } = useContext(KontContext);
   useEffect(() => {
     (async () => {
-      const url = await fetch("/jelUlogovan", {
+      const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
         method: "GET",
         redirect: "follow",
         credentials: "include", // Don't forget to specify this if you need cookies
@@ -55,7 +55,7 @@ const Logovanje = ({ log }) => {
       mejl,
       šifra,
     };
-    const url = await fetch("/login", {
+    const url = await fetch("https://e-notes-4mhk.onrender.com/login", {
       method: "POST",
       redirect: "follow",
       credentials: "include", // Don't forget to specify this if you need cookies

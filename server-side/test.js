@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 // CORS politika: podešavanja
 const corsOptions = {
-  origin: "*", // Zbog ovoga mi nije radio program, ne koristi localhost!
+  origin: "https://najbolji-notes.netlify.app/", // Zbog ovoga mi nije radio program, ne koristi localhost!
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
