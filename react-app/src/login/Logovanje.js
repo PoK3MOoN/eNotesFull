@@ -16,16 +16,16 @@ const Logovanje = ({ log }) => {
     setMalaSlika,
   } = useContext(KontContext);
   useEffect(() => {
-    const token = cookies.get("jwt");
+    const token = `jwt=${cookies.get("jwt")}`;
     (async () => {
       const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
-        method: "GET",
+        method: "POST",
         redirect: "follow",
         headers: {
-          Cookie: `jwt=${token}`,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
+        credentials: "include",
+        body: await JSON.stringify(token),
       });
 
       const res = await url.json();
