@@ -16,7 +16,9 @@ const Logovanje = ({ log }) => {
     setMalaSlika,
   } = useContext(KontContext);
   useEffect(() => {
-    const token = `jwt=${cookies.get("jwt")}`;
+    const body = {
+      jwt: cookies.get("jwt"),
+    };
     (async () => {
       const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
         method: "POST",
@@ -25,7 +27,7 @@ const Logovanje = ({ log }) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: await JSON.stringify(token),
+        body: await JSON.stringify(body),
       });
 
       const res = await url.json();
