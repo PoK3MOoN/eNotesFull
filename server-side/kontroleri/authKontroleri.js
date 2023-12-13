@@ -56,7 +56,10 @@ exports.zaštita = catchAsync(async (req, res, next) => {
   }
   if (!token) return next(new AppError("Prijavi se...", 404));
   // 2. Verifikacija
+  console.log(req.body.jwt);
+  console.log(token);
   const decoded = await jwt.verify(token, process.env.JWT_TAJNA);
+  console.log(decoded);
   // 3. Provjeri postoji li korisnik
   const korisnik = await Korisnik.findById(decoded.id);
   if (!korisnik) return next(new AppError("Korisnik vise ne postoji...", 404));
