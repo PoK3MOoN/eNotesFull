@@ -44,7 +44,6 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.zaštita = catchAsync(async (req, res, next) => {
   // 1. Uzmi token
   let token;
-  console.log(req);
   console.log(req.cookies);
   console.log(req.headers);
   if (
@@ -52,6 +51,8 @@ exports.zaštita = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
+  } else if (req.headers.jwt) {
+    token = req.headers.jwt;
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }

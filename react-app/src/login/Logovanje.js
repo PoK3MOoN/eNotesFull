@@ -20,6 +20,9 @@ const Logovanje = ({ log }) => {
       const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
         method: "GET",
         redirect: "follow",
+        headers: {
+          jwt: cookies.get("jwt"),
+        },
         credentials: "same-origin", // Don't forget to specify this if you need cookies
       });
 
