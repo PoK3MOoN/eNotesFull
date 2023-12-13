@@ -44,7 +44,6 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.zaštita = catchAsync(async (req, res, next) => {
   // 1. Uzmi token
   let token;
-  console.log(req.body);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -70,7 +69,6 @@ exports.jelUlogovan = catchAsync(async (req, res, next) => {
   if (req.cookies.jwt || req.body.jwt) {
     // 1. Desifruj token
     const decoded = await jwt.verify(req.body.jwt, process.env.JWT_TAJNA);
-    console.log(String(req.body.jwt));
     console.log(decoded);
     // 2. Ako postoji, vrati korisnika
     if (decoded) {
