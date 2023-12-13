@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { KontContext } from "../App";
+import Cookies from "universal-cookie";
 
 const Logovanje = ({ log }) => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
+
   const {
     ulogovan,
     ulogovanoIme,
@@ -18,7 +20,7 @@ const Logovanje = ({ log }) => {
       const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
         method: "GET",
         redirect: "follow",
-        credentials: "include", // Don't forget to specify this if you need cookies
+        credentials: "same-origin", // Don't forget to specify this if you need cookies
       });
 
       const res = await url.json();
@@ -66,7 +68,7 @@ const Logovanje = ({ log }) => {
     });
 
     const res = await url.json();
-    console.log(res);
+    cookies.set("jwt", res.token);
     if (res.status === "fail") {
       setGreska(res.message);
       return;

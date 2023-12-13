@@ -44,6 +44,9 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.zaštita = catchAsync(async (req, res, next) => {
   // 1. Uzmi token
   let token;
+  console.log(req);
+  console.log(req.cookies);
+  console.log(req.headers);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")

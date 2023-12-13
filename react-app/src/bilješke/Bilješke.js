@@ -23,12 +23,15 @@ const Bilješke = () => {
 
   const [meni, setMeni] = useState(false);
 
+  const [opcijaSortiranja, setOpcijaSortiranja] = useState("Datum");
+  const [poredak, setPoredak] = useState(true);
+
+  const [fsSlika, setFsSlika] = useState(false);
+
   const meniCB = () => {
     if (!meni) setMeni(true);
     else setMeni(false);
   };
-
-  const [fsSlika, setFsSlika] = useState(false);
 
   const fsCB = () => {
     if (!fsSlika) setFsSlika(true);
@@ -39,6 +42,7 @@ const Bilješke = () => {
     if (!ulogovan) {
       navigate("/login");
     }
+    sistemSortiranja(bilješke, opcijaSortiranja, poredak);
   }, [ulogovan]);
 
   useEffect(() => {
@@ -48,19 +52,15 @@ const Bilješke = () => {
         {
           method: "GET",
           redirect: "follow",
-          credentials: "include",
+          credentials: "same-origin",
         }
       );
       const { bilješke } = await url.json();
+      console.log(bilješke);
       setBilješke(bilješke);
       setUčitavanje(false);
     })();
   }, []);
-
-  const [opcijaSortiranja, setOpcijaSortiranja] = useState("Datum");
-  const [poredak, setPoredak] = useState(true);
-
-  sistemSortiranja(bilješke, opcijaSortiranja, poredak);
 
   const sortiranje = () => {
     sistemSortiranja(bilješke, opcijaSortiranja, poredak);
@@ -79,7 +79,7 @@ const Bilješke = () => {
       await fetch("https://e-notes-4mhk.onrender.com/odjaviKorisnika", {
         method: "GET",
         redirect: "follow",
-        credentials: "include",
+        credentials: "same-origin",
       });
       setUlogovan(false);
     }
@@ -109,7 +109,7 @@ const Bilješke = () => {
             "Content-Type": "application/json",
           },
           redirect: "follow",
-          credentials: "include",
+          credentials: "same-origin",
           body: JSON.stringify({ id: id }),
         }
       );
@@ -237,6 +237,7 @@ const Bilješke = () => {
           )}
           {!učitavanje &&
             !pretrazivanje &&
+            bilješke &&
             bilješke.map((item) => (
               <BilješkaPreview
                 ime={item.naslov}
@@ -255,6 +256,7 @@ const Bilješke = () => {
             ))}
           {!učitavanje &&
             pretrazivanje &&
+            bilješke &&
             pretraga.map((item) => (
               <BilješkaPreview
                 ime={item.naslov}
@@ -272,7 +274,7 @@ const Bilješke = () => {
               />
             ))}
 
-          {!učitavanje && bilješke.length === 0 && (
+          {!učitavanje && bilješke && bilješke.length === 0 && (
             <Link to="dodaj-bilješku">
               <div className="relative group w-[38vw] sm:w-[26vw] lg:w-64 h-72 md:h-96 rounded-xl pl-4 sm:pl-6 p-6 flex flex-col gap-2 justify-center items-center shadow-xl bg-tamno-zelena hover:cursor-pointer animacija z-0 md:hover:scale-105">
                 <div className="text-[0.75rem] md:text-xl lg:text-2xl rounded-full z-10 text-white">
