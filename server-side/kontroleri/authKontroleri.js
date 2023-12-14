@@ -66,6 +66,8 @@ exports.zaštita = catchAsync(async (req, res, next) => {
 });
 
 exports.jelUlogovan = catchAsync(async (req, res, next) => {
+  console.log("KOLAČIĆI!!!!: ", req.cookies);
+  console.log(req);
   if (req.cookies.jwt) {
     // 1. Desifruj token
     const decoded = await jwt.verify(req.cookies.jwt, process.env.JWT_TAJNA);
