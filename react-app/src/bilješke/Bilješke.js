@@ -187,7 +187,7 @@ const Bilješke = () => {
               <img
                 className="object-fill"
                 alt="prof"
-                src={`/slike/${malaSlika}`}
+                src={`https://e-notes-4mhk.onrender.com/slike/${malaSlika}`}
               ></img>
             </div>
             <p className="text-end text-lg md:text-xl">{ulogovanoIme}</p>
