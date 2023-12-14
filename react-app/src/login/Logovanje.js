@@ -1,11 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { KontContext } from "../App";
-import Cookies from "universal-cookie";
 
 const Logovanje = ({ log }) => {
   const navigate = useNavigate();
-  const cookies = new Cookies();
 
   const {
     ulogovan,
@@ -16,18 +14,11 @@ const Logovanje = ({ log }) => {
     setMalaSlika,
   } = useContext(KontContext);
   useEffect(() => {
-    const body = {
-      jwt: cookies.get("jwt"),
-    };
     (async () => {
       const url = await fetch("https://e-notes-4mhk.onrender.com/jelUlogovan", {
-        method: "POST",
+        method: "GET",
         redirect: "follow",
-        headers: {
-          "Content-Type": "application/json",
-        },
         credentials: "include",
-        body: await JSON.stringify(body),
       });
 
       const res = await url.json();
@@ -75,7 +66,6 @@ const Logovanje = ({ log }) => {
     });
 
     const res = await url.json();
-    cookies.set("jwt", res.token);
     if (res.status === "fail") {
       setGreska(res.message);
       return;

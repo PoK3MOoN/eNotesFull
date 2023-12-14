@@ -52,7 +52,7 @@ const Bilješke = () => {
         {
           method: "GET",
           redirect: "follow",
-          credentials: "same-origin",
+          credentials: "include",
         }
       );
       const { bilješke } = await url.json();
@@ -79,7 +79,7 @@ const Bilješke = () => {
       await fetch("https://e-notes-4mhk.onrender.com/odjaviKorisnika", {
         method: "GET",
         redirect: "follow",
-        credentials: "same-origin",
+        credentials: "include",
       });
       setUlogovan(false);
     }
@@ -96,6 +96,9 @@ const Bilješke = () => {
   };
 
   const obrisiCB = async (id) => {
+    const body = {
+      id: id,
+    };
     const odgovor = window.confirm(
       "Jeste li sigurni da želite izbrisati bilješku?"
     );
@@ -105,12 +108,9 @@ const Bilješke = () => {
         "https://e-notes-4mhk.onrender.com/obrisiBiljesku",
         {
           method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
           redirect: "follow",
-          credentials: "same-origin",
-          body: JSON.stringify({ id: id }),
+          credentials: "include",
+          body: await JSON.stringify(body),
         }
       );
       setBilješke(biljeske);
