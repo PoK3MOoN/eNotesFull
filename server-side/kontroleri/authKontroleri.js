@@ -15,7 +15,7 @@ const kreirajToken = (korisnik, statusKod, req, res) => {
   res.cookie("jwt", token, {
     expires: new Date(Date.now() + process.env.JWT_ROK * 24 * 60 * 60 * 1000),
     httpOnly: true,
-    Secure: true,
+    secure: true,
     sameSite: "None",
   });
 
