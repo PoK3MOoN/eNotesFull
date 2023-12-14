@@ -50,10 +50,8 @@ exports.zaštita = catchAsync(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
-    console.log("1.");
     token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
-    console.log("2.");
     token = req.cookies.jwt;
   }
   if (!token) return next(new AppError("Prijavi se...", 404));
@@ -91,6 +89,8 @@ exports.odjaviKorisnika = (req, res) => {
   res.cookie("jwt", "odjava", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    secure: true,
+    sameSite: "None",
   });
   res.status(200).json({ status: "success" });
 };

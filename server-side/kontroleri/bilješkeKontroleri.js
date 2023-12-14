@@ -17,7 +17,6 @@ exports.uzmiSveBilješke = catchAsync(async (req, res, next) => {
 exports.uzmiBilješkeJednog = catchAsync(async (req, res, next) => {
   // 1. Server pronalazi korisnika
   const korisnik = req.user;
-  console.log("BILJEŠKE JEDNOG KORISNIK: ", korisnik);
   if (!korisnik) return next(new AppError("Korisnik ne postoji", 404));
   // 2. Server uzima sve bilješke određenog korisnika
   const bilješke = await Biljeska.find({ korisnik: korisnik.id });

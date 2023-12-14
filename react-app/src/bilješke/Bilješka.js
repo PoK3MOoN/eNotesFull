@@ -23,11 +23,14 @@ const Bilješka = () => {
 
   useEffect(() => {
     (async () => {
-      const url = await fetch(`/uzmiBiljesku/${id}`, {
-        method: "GET",
-        redirect: "follow",
-        credentials: "include",
-      });
+      const url = await fetch(
+        `https://e-notes-4mhk.onrender.com/uzmiBiljesku/${id}`,
+        {
+          method: "GET",
+          redirect: "follow",
+          credentials: "include",
+        }
+      );
       const res = await url.json();
       if (res.status === "failed") setPoruka(res.message);
 
