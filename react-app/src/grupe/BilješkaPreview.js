@@ -7,7 +7,7 @@ export const bilješkaInformacije = createContext();
 
 const BilješkaPreview = ({ ime, tekst, datum, callback, id }) => {
   return (
-    <Link to={`/biljeska/${id}`}>
+    <Link to={`/biljeska/${id}`} state={{ cb: "123", id: id }}>
       <div className="relative group w-[38vw] sm:w-[26vw] lg:w-64 h-72 md:h-96 rounded-xl pl-4 sm:pl-6 p-6 flex flex-col gap-2 shadow-xl bg-siva  md:hover:bg-tamno-zelena hover:cursor-pointer animacija z-0 md:hover:scale-105">
         <h1 className="text-md md:text-xl font-bold underline animacija md:group-hover:text-white md:group-hover:opacity-70">
           {ime}

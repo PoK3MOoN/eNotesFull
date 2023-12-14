@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ObrisiIkona = ({ klase, velicina, cb, id }) => {
+const ObrisiIkona = ({ klase, velicina, cb, id, tekst }) => {
   return (
     <Link
       className={`flex group transition duration-150 ease-out ${klase}`}
@@ -32,7 +32,9 @@ const ObrisiIkona = ({ klase, velicina, cb, id }) => {
           strokeWidth="32"
         />
       </svg>
-      <div className="block absolute translate-y-12 font-bold text-sm text-white">
+      <div
+        className={`${tekst} absolute translate-y-12 font-bold text-sm text-white`}
+      >
         OBRISI
       </div>
     </Link>

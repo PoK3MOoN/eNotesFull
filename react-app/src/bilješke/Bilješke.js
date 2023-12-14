@@ -231,7 +231,7 @@ const Bilješke = () => {
             ></input>
           </div>
         </span>
-        <div className="gap-y-8 gap-x-2 mt-8 justify-items-center grid grid-cols-2 md:gap-x-2 sm:grid-cols-3 lg:gap-x-8 xl:grid-cols-4  2xl:grid-cols-5 ">
+        <div className="gap-y-8 gap-x-2 my-4 justify-items-center grid grid-cols-2 md:gap-x-2 sm:grid-cols-3 lg:gap-x-8 xl:grid-cols-4  2xl:grid-cols-5 ">
           {učitavanje && (
             <div className=" text-white text-3xl">Učitavanje...</div>
           )}

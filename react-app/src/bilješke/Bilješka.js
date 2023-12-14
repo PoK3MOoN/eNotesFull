@@ -1,8 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import Polje from "../registracija/Polje";
-import Pozadina from "../slike/Pozadina";
-import Pocetna from "./Pocetna";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import ObrisiIkona from "../ikone/ObrisiIkona";
 
 const Bilješka = () => {
   const navigate = useNavigate();
@@ -19,12 +17,12 @@ const Bilješka = () => {
   const [datumKreiranja, setDatumKreiranja] = useState("");
 
   // UZIMANJE BILJEŠKE
-  const id = window.location.pathname.split("/")[2];
+  const idBilješke = window.location.pathname.split("/")[2];
 
   useEffect(() => {
     (async () => {
       const url = await fetch(
-        `https://e-notes-4mhk.onrender.com/uzmiBiljesku/${id}`,
+        `https://e-notes-4mhk.onrender.com/uzmiBiljesku/${idBilješke}`,
         {
           method: "GET",
           redirect: "follow",
@@ -44,10 +42,33 @@ const Bilješka = () => {
     })();
   }, []);
 
+  const obrisiCB = async () => {
+    const body = {
+      id: idBilješke,
+    };
+    console.log(body);
+    console.log(await JSON.stringify(body));
+    const odgovor = window.confirm(
+      "Jeste li sigurni da želite izbrisati bilješku?"
+    );
+    if (odgovor) {
+      const url = await fetch(
+        "https://e-notes-4mhk.onrender.com/obrisiBiljesku",
+        {
+          method: "DELETE",
+          redirect: "follow",
+          credentials: "include",
+          body: await JSON.stringify(body),
+        }
+      );
+      navigate("/");
+    }
+  };
+
   const ažurirajCB = async () => {
     if (!promjena) return navigate("/");
     const podaci = {
-      id,
+      idBilješke,
       naslov,
       sadržaj,
     };
@@ -93,7 +114,7 @@ const Bilješka = () => {
               <div className="flex flex-col gap-4 rounded-3xl">
                 {/* NASLOV */}
                 <div
-                  className="pl-4 flex items-center gap-4 h-20 w-full hover:cursor-pointer group"
+                  className="px-4 flex items-center gap-4 h-20 w-full hover:cursor-pointer group"
                   onClick={setPromjenaNaslova.bind(true)}
                 >
                   <svg
@@ -111,7 +132,7 @@ const Bilješka = () => {
                     />
                   </svg>
                   {!promjenaNaslova && (
-                    <h1 className="text-2xl md:text-4xl font-semibold text-white ">
+                    <h1 className=" w-80% text-2xl md:text-4xl font-semibold text-white ">
                       {naslov}
                     </h1>
                   )}
@@ -125,6 +146,13 @@ const Bilješka = () => {
                       onKeyDown={setNaslovCB.bind(Event)}
                     ></input>
                   )}
+                  <ObrisiIkona
+                    cb={obrisiCB}
+                    id={idBilješke}
+                    klase={"ml-auto"}
+                    velicina={"h-10 w-10"}
+                    tekst={"hidden"}
+                  />
                 </div>
 
                 <div className="relative bg-siva w-full h-[65vh] md:h-80 rounded-3xl">

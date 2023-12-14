@@ -75,6 +75,8 @@ exports.ažurirajBilješku = catchAsync(async (req, res, next) => {
 });
 
 exports.obrišiBilješku = catchAsync(async (req, res, next) => {
+  console.log(req.body.id);
+  console.log(req.user.id);
   // 1. Server uzima potrebnu bilješku i briše je
   await Biljeska.findOneAndDelete({
     _id: req.body.id,
