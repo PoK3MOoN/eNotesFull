@@ -20,13 +20,6 @@ const corsOptions = {
   origin: "https://najbolji-notes.netlify.app", // Zbog ovoga mi nije radio program, ne koristi localhost!
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Cookie",
-    "Cookies",
-    "Set-Cookie",
-  ],
 };
 
 app.use(cors(corsOptions)); // Use this after the variable declaration

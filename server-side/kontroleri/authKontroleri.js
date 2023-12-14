@@ -50,15 +50,15 @@ exports.zaštita = catchAsync(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
+    console.log("1.");
     token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
+    console.log("2.");
     token = req.cookies.jwt;
   }
   if (!token) return next(new AppError("Prijavi se...", 404));
   // 2. Verifikacija
-  console.log(token);
   const decoded = await jwt.verify(token, process.env.JWT_TAJNA);
-  console.log(decoded);
   // 3. Provjeri postoji li korisnik
   const korisnik = await Korisnik.findById(decoded.id);
   if (!korisnik) return next(new AppError("Korisnik vise ne postoji...", 404));
@@ -68,12 +68,9 @@ exports.zaštita = catchAsync(async (req, res, next) => {
 });
 
 exports.jelUlogovan = catchAsync(async (req, res, next) => {
-  console.log("KOLAČIĆI!!!!: ", req.cookies);
-  console.log(req);
   if (req.cookies.jwt) {
     // 1. Desifruj token
     const decoded = await jwt.verify(req.cookies.jwt, process.env.JWT_TAJNA);
-    console.log(decoded);
     // 2. Ako postoji, vrati korisnika
     if (decoded) {
       const korisnik = await Korisnik.findById(decoded.id);
