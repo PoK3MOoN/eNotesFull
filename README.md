@@ -4,4 +4,4 @@
 much more! 😎</h3>
 <h3> You can check live application on following url: https://najbolji-notes.netlify.app/login (Netlify + Render) </h3>
 <h4>NOTE: Since I am using free application to host server, on the first enterance you should click login and wait 30 seconds for red text (in order to wake up server) </h3>
-<h3>I can't wait to show you my app, so hurry up and visit this one until someone broke it 😅</h3>
+<h3>I can't wait to show you my app, so hurry up and visit this one until someone broke it (Password update is currently not working)😅</h3>
